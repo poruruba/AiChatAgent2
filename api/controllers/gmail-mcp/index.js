@@ -26,7 +26,7 @@ exports.handler = () => {
     });
 
     // Add tools
-    server.tool("send_email", "メールを送信します。",
+    server.tool("send_email", "メールを送信します、指定しない場合はデフォルトのメールアドレス",
         { to: z.string().describe("To").optional(), subject: z.string().describe("Subject"), body: z.string().describe('body') },
         async (args) => {
           console.log("send_email", args);
