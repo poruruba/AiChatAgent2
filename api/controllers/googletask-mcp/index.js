@@ -66,10 +66,10 @@ exports.handler = () => {
     });
 
     // Add tools
-    server.tool("list_task", "私のタスクリストを取得します。",
+    server.tool("list_tasks", "私のタスクリストを取得します。",
         { },
         async (args) => {
-          console.log("list_task", args);
+          console.log("list_tasks", args);
           var json = await jsonfile.read_json(TOKEN_FILE_PATH);
           if (!json) {
             console.log('file is not ready.');
