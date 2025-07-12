@@ -10,6 +10,7 @@ const TOKEN_FILE_PATH = process.env.THIS_BASE_PATH + '/data/gapi/access_token.js
 const GOOGLEAPI_CLIENT_ID = process.env.GOOGLEAPI_CLIENT_ID;
 const GOOGLEAPI_CLIENT_SECRET = process.env.GOOGLEAPI_CLIENT_SECRET;
 const GOOGLEAPI_REDIRECT_URL = process.env.GOOGLEAPI_REDIRECT_URL;
+const GOOGLEAPI_DEFAULT_EMAIL = process.env.GOOGLEAPI_DEFAULT_EMAIL;
 
 const GAPI_API_KEY = process.env.GAPI_API_KEY;
 const token_url_base = process.env.PUBLIC_HOST_NAME;
@@ -26,7 +27,7 @@ exports.handler = () => {
 
     // Add tools
     server.tool("send_email", "メールを送信します。",
-        { to: z.string().describe("To"), subject: z.string().describe("Subject"), body: z.string().describe('body') },
+        { to: z.string().describe("To").optional(), subject: z.string().describe("Subject"), body: z.string().describe('body') },
         async (args) => {
           console.log("send_email", args);
           var json = await jsonfile.read_json(TOKEN_FILE_PATH);
@@ -45,7 +46,7 @@ exports.handler = () => {
           }
           googleAuth.setCredentials(json);
 
-          var raw = createRawMessage(args.to, args.subject, args.body);
+          var raw = createRawMessage(args.to || GOOGLEAPI_DEFAULT_EMAIL, args.subject, args.body);
           const gmail = google.gmail({version: 'v1', auth: googleAuth});
           await gmail.users.messages.send({
             userId: 'me',
