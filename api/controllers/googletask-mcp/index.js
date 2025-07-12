@@ -151,7 +151,7 @@ exports.handler = () => {
         }
     );
 
-    server.tool("delete_task", "私のタスクを追加します。",
+    server.tool("delete_task", "私のタスクを削除します。",
         { task: z.string().describe("タスクID") },
         async (args) => {
           console.log("delete_task", args);
