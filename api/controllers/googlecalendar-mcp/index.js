@@ -60,10 +60,10 @@ exports.handler = () => {
     });
 
     // Add tools
-    server.tool("list_event", "私の予定を取得します。",
+    server.tool("list_events", "私の予定を取得します。",
         { min_time: z.string().describe("終了時間の下限(ISO8601)"), max_time: z.string().describe("開始時間の上限(ISO8601)") },
         async (args) => {
-          console.log("list_event", args);
+          console.log("list_events", args);
           var json = await jsonfile.read_json(TOKEN_FILE_PATH);
           if (!json) {
             console.log('file is not ready.');
