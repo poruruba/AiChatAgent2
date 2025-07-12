@@ -1,0 +1,46 @@
+paths:
+  /gapi/client_info:
+    get:
+      responses:
+        302:
+          description: Success
+          schema:
+            type: "string"
+            
+  /gapi/authorize:
+    get:
+      responses:
+        302:
+          description: Success
+          schema:
+            type: "string"
+
+  /gapi/token:
+    post:
+      security:
+        - apikeyAuth: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: "#/definitions/CommonRequest"
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/CommonResponse"
+
+  /gapi/token-refresh:
+    post:
+      security:
+        - apikeyAuth: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: "#/definitions/CommonRequest"
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/CommonResponse"

@@ -1,0 +1,9 @@
+paths:
+  /mcp-gmail:
+    post:
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+

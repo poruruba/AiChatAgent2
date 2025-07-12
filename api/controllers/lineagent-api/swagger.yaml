@@ -1,0 +1,13 @@
+paths:
+  /lineagent-webhook:
+    post:
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
