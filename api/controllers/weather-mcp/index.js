@@ -13,34 +13,34 @@ exports.handler = () => {
     });
 
     // Add tools
-    server.tool("get_today_weather", "今日の天気予報を取得します。",
-        { lat: z.number().describe("緯度"), lng: z.number().describe("経度") },
-        async (args) => {
-          console.log("get_daily_weather", args);
-          var input = {
-            url: "https://api.open-meteo.com/v1/forecast",
-            method: "GET",
-            qs: {
-              latitude: args.lat,
-              longitude: args.lng,
-              daily: "weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum",
-              forecast_days: 1,
-              timezone: "Asia/Tokyo",
-            }            
-          };
-          var result = await HttpUtils.do_http(input);
-          console.log(result);
-          result.weather_code_description = weather_code_description;
-          return {
-            content: [
-              {
-                type: "text",
-                text: JSON.stringify(result)
-              }
-            ]
-          }
-        }
-    );
+    // server.tool("get_today_weather", "今日の天気予報を取得します。",
+    //     { lat: z.number().describe("緯度"), lng: z.number().describe("経度") },
+    //     async (args) => {
+    //       console.log("get_daily_weather", args);
+    //       var input = {
+    //         url: "https://api.open-meteo.com/v1/forecast",
+    //         method: "GET",
+    //         qs: {
+    //           latitude: args.lat,
+    //           longitude: args.lng,
+    //           daily: "weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum",
+    //           forecast_days: 1,
+    //           timezone: "Asia/Tokyo",
+    //         }            
+    //       };
+    //       var result = await HttpUtils.do_http(input);
+    //       console.log(result);
+    //       result.weather_code_description = weather_code_description;
+    //       return {
+    //         content: [
+    //           {
+    //             type: "text",
+    //             text: JSON.stringify(result)
+    //           }
+    //         ]
+    //       }
+    //     }
+    // );
 
     server.tool("get_daily_weather", "今週の天気予報を取得します。",
         { lat: z.number().describe("緯度"), lng: z.number().describe("経度") },
