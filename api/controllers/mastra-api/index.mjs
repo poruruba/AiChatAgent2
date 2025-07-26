@@ -51,6 +51,9 @@ function getThreadId(){
 				GoogleTask: {
 					url: new URL(PUBLIC_HOST_NAME + "/mcp-googletask")
 				},
+				DateTime: {
+					url: new URL(PUBLIC_HOST_NAME + "/mcp-datetime")
+				},
 				Exa:{
 					url: new URL("https://mcp.exa.ai/mcp?exaApiKey=" + EXA_API_KEY)
 				},
